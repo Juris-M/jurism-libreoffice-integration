@@ -10,7 +10,8 @@ IS_BETA=0
 FORK="jurism-word-for-mac-integration"
 BRANCH="master"
 CLIENT="jurism-word-for-mac-integration"
-VERSION_ROOT="1.0."
+VERSION_ROOT="3.5.11m"
+COMPILED_PLUGIN_URL="https://download.zotero.org/integration/Zotero-MacWord-Plugin-3.5.11.xpi"
 
 # Error handlers
 . sh-lib/errors.sh
@@ -51,7 +52,6 @@ case $RELEASE in
         echo "(a)"
         touch-log
         echo "(b)"
-        refresh-style-modules
         echo "(c)"
         build-the-plugin
         echo "(d)"
@@ -69,7 +69,6 @@ case $RELEASE in
         echo "Version is: $VERSION"
         # Build
         touch-log
-        refresh-style-modules
         build-the-plugin
         git-checkin-all-and-push
         create-github-release
@@ -89,7 +88,6 @@ case $RELEASE in
         echo "Version is: $VERSION"
         # Build
         touch-log
-        refresh-style-modules
         build-the-plugin
         git-checkin-all-and-push
         create-github-release

@@ -26,20 +26,13 @@ function touch-log () {
     echo "" > "${LOG_FILE}" 2<&1
 }
 
-function refresh-style-modules () {
-    trap booboo ERR
-    git checkout "${BRANCH}" >> "${LOG_FILE}" 2<&1
-    git submodule foreach git pull origin master >> "${LOG_FILE}" 2<&1
-    trap - ERR
-}
-
 function repo-finish () {
-    echo "$2"
+    echo "$2 ($1)"
     date | sed -e "s/^/  /"
     ls -l "releases/${VERSION_STUB}/${CLIENT}-v${VERSION}.xpi" | sed -e "s/^/  /"
-    if [ $1 -eq 1 ]; then
-        git checkout install.rdf
-    fi
+    #if [ $1 -eq 1 ]; then
+    #    git checkout install.rdf
+    #fi
 }
 
 function git-checkin-all-and-push () {

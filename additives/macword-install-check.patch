@@ -1,0 +1,20 @@
+diff -r -u a/components/zoteroMacWordIntegration.js b/components/zoteroMacWordIntegration.js
+--- a/components/zoteroMacWordIntegration.js	2015-07-19 13:14:54.295233600 +0900
++++ b/components/zoteroMacWordIntegration.js	2015-07-19 13:14:35.403016900 +0900
+@@ -22,6 +22,16 @@
+     ***** END LICENSE BLOCK *****
+ */
+ 
++var InstallChecker = Components.utils.import("resource://zotero-macword-integration/install_check.jsm").Checker;
++InstallChecker(
++    "Juris-M Word Plugin chooser", 
++    "Select the plugin to match your setup", 
++    "jurismMacWordIntegration@juris-m.github.io", 
++    "Mac Word Integration for Juris-M", 
++    "zoteroMacWordIntegration@zotero.org", 
++    "Mac Word Integration for Zotero"
++);
++
+ Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
+ Components.utils.import("resource://gre/modules/ctypes.jsm");
+ 
