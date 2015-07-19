@@ -19,7 +19,7 @@ function xx-retrieve-compiled-plugin () {
 }
 
 function xx-fix-product-id () {
-    sed -si "s/zoteroMacWordIntegration@zotero.org/jurismMacWordIntegration@juris-m.github.io/g" install.rdf
+    sed -si "s/zoteroOpenOfficeIntegration@zotero.org/jurismOpenOfficeIntegration@juris-m.github.io/g" install.rdf
 }
 
 function xx-fix-product-name () {
@@ -55,8 +55,17 @@ function xx-add-install-check-module () {
     cp ../additives/install_check.jsm resource
 }
 
+function xx-fix-uuids () {
+    sed -si "s/f43193a1-7060-41a3-8e82-481d58b71e6f/62645C66-2DD5-11E5-B434-93CF1D5D46B0/g" chrome.manifest
+    sed -si "s/f43193a1-7060-41a3-8e82-481d58b71e6f/62645C66-2DD5-11E5-B434-93CF1D5D46B0/g" components/zoteroOpenOfficeIntegration.js
+    sed -si "s/8478cd98-5ba0-4848-925a-75adffff2dbf/2AD30C00-2DDC-11E5-98C6-7BD91D5D46B0/g" chrome.manifest
+    sed -si "s/8478cd98-5ba0-4848-925a-75adffff2dbf/2AD30C00-2DDC-11E5-98C6-7BD91D5D46B0/g" components/zoteroOpenOfficeIntegration.js
+    sed -si "s/82483c48-304c-460e-ab31-fac872f20379/44AF3E96-2DDC-11E5-952E-8DD91D5D46B0/g" chrome.manifest
+    sed -si "s/82483c48-304c-460e-ab31-fac872f20379/44AF3E96-2DDC-11E5-952E-8DD91D5D46B0/g" components/zoteroOpenOfficeIntegration.js
+}
+
 function xx-apply-patch () {
-    patch -p1 < ../additives/macword-install-check.patch >> "${LOG_FILE}" 2<&1
+    patch -p1 < ../additives/word-install-check.patch >> "${LOG_FILE}" 2<&1
 }
 
 
@@ -79,6 +88,7 @@ function build-the-plugin () {
         xx-fix-target-id
         xx-add-update-key
         xx-add-install-check-module
+        xx-fix-uuids
         xx-apply-patch
         xx-make-the-bundle
         cd ..

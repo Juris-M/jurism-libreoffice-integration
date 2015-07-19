@@ -1,0 +1,20 @@
+diff -r -u a/components/zoteroOpenOfficeIntegration.js b/components/zoteroOpenOfficeIntegration.js
+--- a/components/zoteroOpenOfficeIntegration.js	2015-07-19 13:14:54.295233600 +0900
++++ b/components/zoteroOpenOfficeIntegration.js	2015-07-19 13:14:35.403016900 +0900
+@@ -22,6 +22,16 @@
+     ***** END LICENSE BLOCK *****
+ */
+ 
++var InstallChecker = Components.utils.import("resource://zotero-openoffice-integration/install_check.jsm").Checker;
++InstallChecker(
++    "Juris-M LibreOffice plugin chooser", 
++    "Select the plugin to match your setup", 
++    "jurismOpenOfficeIntegration@juris-m.github.io", 
++    "LibreOffice Integration for Juris-M", 
++    "zoteroOpenOfficeIntegration@zotero.org", 
++    "LibreOffice Integration for Zotero"
++);
++
+ Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
+ Components.utils.import("resource://gre/modules/ctypes.jsm");
+ 
