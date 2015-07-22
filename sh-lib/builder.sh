@@ -1,6 +1,6 @@
 function set-install-version () {
     sed -si "s/<em:version>.*<\/em:version>/<em:version>${VERSION}<\/em:version>/" install.rdf
-    sed -si "s/<em:updateURL>.*<\/em:updateURL>/<em:updateURL>https:\/\/juris-m.github.io\/juris-m\/${CLIENT}\/update.rdf<\/em:updateURL>/" install.rdf
+    sed -si "s/<em:updateURL>.*<\/em:updateURL>/<em:updateURL>https:\/\/juris-m.github.io\/${CLIENT}\/update.rdf<\/em:updateURL>/" install.rdf
 }
 
 function xx-make-build-directory () {
@@ -23,15 +23,17 @@ function xx-fix-product-id () {
 }
 
 function xx-fix-product-name () {
-    sed -si "s/Zotero/Juris-M/g" install.rdf
+    sed -si "/Copyright.*Zotero/n;/Zotero *=/n;s/Zotero\( \|\"\|$\)/Juris-M\\1/g" install.rdf
+    sed -si "/Copyright.*Zotero/n;/Zotero *=/n;s/Zotero\( \|\"\|$\)/Juris-M\\1/g" components/zoteroOpenOfficeIntegration.js
 }
 
 function xx-fix-contributor () {
-    sed -si "/<\/em:developer>/a\        <em:contributor>Frank Bennett</em:contributor>" install.rdf
+    sed -si "/<\/em:developer>/a\    <em:contributor>Frank Bennett</em:contributor>" install.rdf
 }
 
 function xx-install-icon () {
     cp ../additives/mlz_z_32px.png install/zotero.png
+    cp ../additives/mlz_z_32px.png chrome/zotero.png
 }
 
 function xx-fix-homepage-url () {
@@ -39,7 +41,7 @@ function xx-fix-homepage-url () {
 }
 
 function xx-fix-icon-url () {
-    sed -si "s/<em:iconURL>.*<\/em:iconURL>/<em:iconURL>chrome:\/\/zotero\/skin\/mlz_z_32px.png<\/em:iconURL>/" install.rdf
+    sed -si "s/<em:iconURL>.*<\/em:iconURL>/<em:iconURL>chrome:\/\/zotero-openoffice-integration\/content\/zotero.png<\/em:iconURL>/" install.rdf
 }
 
 function xx-fix-target-id () {
