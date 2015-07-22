@@ -70,6 +70,10 @@ function xx-apply-patch () {
     patch -p1 < ../additives/word-install-check.patch >> "${LOG_FILE}" 2<&1
 }
 
+function xx-add-update-template () {
+    cp ../additives/update-TEMPLATE.rdf
+}
+
 
 function xx-make-the-bundle () {
     zip -r "${XPI_FILE}" * >> "${LOG_FILE}"
