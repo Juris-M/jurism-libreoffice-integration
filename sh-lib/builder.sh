@@ -25,6 +25,7 @@ function xx-fix-product-id () {
 function xx-fix-product-name () {
     sed -si "/Copyright.*Zotero/n;/Zotero *=/n;s/Zotero\( \|\"\|$\)/Juris-M\\1/g" install.rdf
     sed -si "/Copyright.*Zotero/n;/Zotero *=/n;s/Zotero\( \|\"\|$\)/Juris-M\\1/g" components/zoteroOpenOfficeIntegration.js
+    sed -si "/Copyright.*Zotero/n;/Zotero *=/n;s/Zotero\( \|\"\|$\)/Juris-M\\1/g" resource/installer.jsm
 }
 
 function xx-fix-contributor () {
@@ -66,14 +67,27 @@ function xx-fix-uuids () {
     sed -si "s/82483c48-304c-460e-ab31-fac872f20379/44AF3E96-2DDC-11E5-952E-8DD91D5D46B0/g" components/zoteroOpenOfficeIntegration.js
 }
 
+function xx-fix-install () {
+    # ID everywhere
+    sed -si "s/zotero@chnm.gmu.edu/juris-m@juris-m.github.io/g" resource/installer.jsm
+    sed -si "s/zotero@chnm.gmu.edu/juris-m@juris-m.github.io/g" resource/installer_common.jsm
+    # URLs
+    sed -si "s/\(url: *\"\)\([^\"]*\)/\\1juris-m.github.io\/downloads/g" resource/installer.jsm
+}
+
+# Are we clever enough now not to need this?
+function xx-insert-copyright-blocks () {
+    sed -si "/BEGIN LICENSE/r ../additives/copyright_block.txt" resource/installer.jsm
+    sed -si "/END OF INSERT/,/END LICENSE/d" resource/installer.jsm
+    sed -si "/BEGIN LICENSE/r ../additives/copyright_block.txt" resource/installer_common.jsm
+    sed -si "/END OF INSERT/,/END LICENSE/d" resource/installer_common.jsm
+    sed -si "/BEGIN LICENSE/r ../additives/copyright_block.txt" components/zoteroOpenOfficeIntegration.js
+    sed -si "/END OF INSERT/,/END LICENSE/d" components/zoteroOpenOfficeIntegration.js
+}
+
 function xx-apply-patch () {
     patch -p1 < ../additives/word-install-check.patch >> "${LOG_FILE}" 2<&1
 }
-
-function xx-add-update-template () {
-    cp ../additives/update-TEMPLATE.rdf ..
-}
-
 
 function xx-make-the-bundle () {
     zip -r "${XPI_FILE}" * >> "${LOG_FILE}"
@@ -95,7 +109,9 @@ function build-the-plugin () {
         xx-add-update-key
         xx-add-install-check-module
         xx-fix-uuids
+        xx-fix-install
         xx-apply-patch
+        xx-insert-copyright-blocks
         xx-add-update-template
         xx-make-the-bundle
         cd ..
