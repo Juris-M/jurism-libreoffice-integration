@@ -71,7 +71,7 @@ function xx-apply-patch () {
 }
 
 function xx-add-update-template () {
-    cp ../additives/update-TEMPLATE.rdf .
+    cp ../additives/update-TEMPLATE.rdf ..
 }
 
 
