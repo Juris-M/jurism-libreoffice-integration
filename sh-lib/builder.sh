@@ -71,7 +71,7 @@ function xx-apply-patch () {
 }
 
 function xx-add-update-template () {
-    cp ../additives/update-TEMPLATE.rdf
+    cp ../additives/update-TEMPLATE.rdf .
 }
 
 
@@ -96,6 +96,7 @@ function build-the-plugin () {
         xx-add-install-check-module
         xx-fix-uuids
         xx-apply-patch
+        xx-add-update-template
         xx-make-the-bundle
         cd ..
     }
