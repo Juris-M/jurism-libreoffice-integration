@@ -2,20 +2,20 @@
 <RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
          xmlns:NC="http://home.netscape.com/NC-rdf#"
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <RDF:Description RDF:about="rdf:#$hOphs"
+  <RDF:Description RDF:about="urn:mozilla:extension:propachi-vanilla@juris-m.github.io"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAIQVzIBPTbFiQfy5obxDgc1IcoC/93cmk9RxaorrDA3DNAa4h9fjlzc90TnsozdgO6YR4IcmJwICVRADydDoJBaruDDj6fQEGkghkQYBjbSh/zgcqTw8VwUOAxwHdKyRtQrtXlYGrsErQEjx5N7wT1Wgx9lJDN6OYGhGhgGjH56g">
+    <em:updates RDF:resource="rdf:#$iVAT+3"/>
+  </RDF:Description>
+  <RDF:Seq RDF:about="rdf:#$iVAT+3">
+    <RDF:li RDF:resource="rdf:#$jVAT+3"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="rdf:#$mVAT+3"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:minVersion="3.6"
                    em:maxVersion="39.*"
-                   em:updateLink="https://github.com/Juris-M/propachi-vanilla/releases/download/v3.5.9m5/jurism-libreoffice-integration-v3.5.9m5.xpi" />
-  <RDF:Description RDF:about="urn:mozilla:extension:propachi-vanilla@juris-m.github.io"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBACjZYywvBX4+K3otOE3G8f3VhXIQ2Qz5Hm0cOO8GVSB0iMCTivKpsTCeooUjBrTCCP7ojNnrCsOeg6Fp62sD/3IUfaVWL2VAPJxaFqKNJvNwMHAYEVsWem6SXsBUoT5+S5AtileNiRENynk6Pz4YklkiOPXTdMKypL+wGxvD3gTK">
-    <em:updates RDF:resource="rdf:#$dOphs"/>
+                   em:updateLink="https://github.com/Juris-M/propachi-vanilla/releases/download/v3.5.9m7/jurism-libreoffice-integration-v3.5.9m7.xpi" />
+  <RDF:Description RDF:about="rdf:#$jVAT+3"
+                   em:version="3.5.9m7">
+    <em:targetApplication RDF:resource="rdf:#$mVAT+3"/>
   </RDF:Description>
-  <RDF:Description RDF:about="rdf:#$eOphs"
-                   em:version="3.5.9m5">
-    <em:targetApplication RDF:resource="rdf:#$hOphs"/>
-  </RDF:Description>
-  <RDF:Seq RDF:about="rdf:#$dOphs">
-    <RDF:li RDF:resource="rdf:#$eOphs"/>
-  </RDF:Seq>
 </RDF:RDF>
