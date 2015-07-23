@@ -120,7 +120,6 @@ function build-the-plugin () {
         xx-fix-install
         xx-apply-patch
         xx-insert-copyright-blocks
-        xx-add-update-template
         xx-make-the-bundle
         cd ..
     }
