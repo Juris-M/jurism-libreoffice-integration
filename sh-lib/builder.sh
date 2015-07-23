@@ -18,8 +18,16 @@ function xx-retrieve-compiled-plugin () {
     rm -f compiled-plugin.xpi
 }
 
-function xx-fix-product-id () {
+function xx-fix-product-ids () {
+    # LO
     sed -si "s/zoteroOpenOfficeIntegration@zotero.org/jurismOpenOfficeIntegration@juris-m.github.io/g" install.rdf
+    sed -si "s/zoteroOpenOfficeIntegration@zotero.org/jurismOpenOfficeIntegration@juris-m.github.io/g" resource/installer.jsm
+    # Mac
+    sed -si "s/zoteroMacWordIntegration@zotero.org/jurismMacWordIntegration@juris-m.github.io/g" install.rdf
+    sed -si "s/zoteroMacWordIntegration@zotero.org/jurismMacWordIntegration@juris-m.github.io/g" resource/installer.jsm
+    # Win
+    sed -si "s/zoteroWinWordIntegration@zotero.org/jurismWindWordIntegration@juris-m.github.io/g" install.rdf
+    sed -si "s/zoteroWinWordIntegration@zotero.org/jurismWinWordIntegration@juris-m.github.io/g" resource/installer.jsm
 }
 
 function xx-fix-product-name () {
@@ -99,7 +107,7 @@ function build-the-plugin () {
         xx-retrieve-compiled-plugin
         set-install-version
         xx-install-icon
-        xx-fix-product-id
+        xx-fix-product-ids
         xx-fix-product-name
         xx-fix-contributor
         xx-install-icon
