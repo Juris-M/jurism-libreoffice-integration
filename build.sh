@@ -10,8 +10,9 @@ IS_BETA=0
 FORK="jurism-libreoffice-integration"
 BRANCH="master"
 CLIENT="jurism-libreoffice-integration"
-VERSION_ROOT="3.5.9m"
-COMPILED_PLUGIN_URL="https://download.zotero.org/integration/Zotero-LibreOffice-Plugin-3.5.9.xpi"
+VERSION_ROOT="3.5.10m"
+COMPILED_PLUGIN_URL="https://download.zotero.org/integration/Zotero-LibreOffice-Plugin-3.5.10.xpi"
+#COMPILED_PLUGIN_URL="https://download.zotero.org/integration/Zotero-LibreOffice-Plugin-3.5.9.xpi"
 
 # Error handlers
 . sh-lib/errors.sh
