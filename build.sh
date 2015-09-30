@@ -6,7 +6,7 @@ set -e
 
 # Constants
 PRODUCT="Juris-M LibreOffice Integration"
-IS_BETA=0
+IS_BETA="false"
 FORK="jurism-libreoffice-integration"
 BRANCH="master"
 CLIENT="jurism-libreoffice-integration"
