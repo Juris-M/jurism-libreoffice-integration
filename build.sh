@@ -12,6 +12,7 @@ BRANCH="master"
 CLIENT="jurism-libreoffice-integration"
 VERSION_ROOT="3.5.10m"
 COMPILED_PLUGIN_URL="https://download.zotero.org/integration/Zotero-LibreOffice-Plugin-3.5.10.xpi"
+SIGNED_STUB="juris_m_libreoffice_integration-"
 
 function xx-make-build-directory () {
     if [ -d "build" ]; then
