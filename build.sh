@@ -67,11 +67,6 @@ function xx-fix-target-id () {
     sed -si "s/zotero@chnm.gmu.edu/juris-m@juris-m.github.io/g" install.rdf
 }
 
-function xx-add-update-key () {
-    sed -si "/<\/em:unpack>/a\        <em:updateKey>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDJqWvOZqiHGp8hLJI92KIp6t1pKP2Q2t+5glUh7JSl+2pdt8y9ANHT1Bx3YrKDi1xwXJ7FNi4mss5XFqEmuJf2TDn02+V6D0hFsNEsSlkCcsznwnCYzeU8GKAhlgjeXz7YPQswLLSk61af/hIhdYUEyYQbxmIAOHDHgMeRcuYJ+QIDAQAB</em:updateKey>" install.rdf
-
-}
-
 function xx-add-install-check-module () {
     cp ../additives/install_check.jsm resource
 }
@@ -124,7 +119,6 @@ function build-the-plugin () {
         xx-fix-homepage-url
         xx-fix-icon-url
         xx-fix-target-id
-        xx-add-update-key
         xx-add-install-check-module
         xx-fix-uuids
         xx-fix-install
@@ -135,4 +129,3 @@ function build-the-plugin () {
     }
     
 . jm-sh/frontend.sh
-
