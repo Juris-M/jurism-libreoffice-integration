@@ -21,6 +21,10 @@ function xx-make-build-directory () {
     mkdir build
 }
 
+function xx-grab-install-rdf () {
+    cp ../install.rdf .
+}
+
 function xx-retrieve-compiled-plugin () {
     trap booboo ERR
     wget -O compiled-plugin.xpi "${COMPILED_PLUGIN_URL}" >> "${LOG_FILE}" 2<&1
@@ -31,13 +35,10 @@ function xx-retrieve-compiled-plugin () {
 
 function xx-fix-product-ids () {
     # LO
-    sed -si "s/zoteroOpenOfficeIntegration@zotero.org/jurismOpenOfficeIntegration@juris-m.github.io/g" install.rdf
     sed -si "s/zoteroOpenOfficeIntegration@zotero.org/jurismOpenOfficeIntegration@juris-m.github.io/g" resource/installer.jsm
     # Mac
-    sed -si "s/zoteroMacWordIntegration@zotero.org/jurismMacWordIntegration@juris-m.github.io/g" install.rdf
     sed -si "s/zoteroMacWordIntegration@zotero.org/jurismMacWordIntegration@juris-m.github.io/g" resource/installer.jsm
     # Win
-    sed -si "s/zoteroWinWordIntegration@zotero.org/jurismWindWordIntegration@juris-m.github.io/g" install.rdf
     sed -si "s/zoteroWinWordIntegration@zotero.org/jurismWinWordIntegration@juris-m.github.io/g" resource/installer.jsm
 }
 
@@ -54,18 +55,6 @@ function xx-fix-contributor () {
 function xx-install-icon () {
     cp ../additives/mlz_z_32px.png install/zotero.png
     cp ../additives/mlz_z_32px.png chrome/zotero.png
-}
-
-function xx-fix-homepage-url () {
-    sed -si "s/<em:homepageURL>.*<\/em:homepageURL>/<em:homepageURL>https:\/\/juris-m.github.io\/downloads<\/em:homepageURL>/" install.rdf
-}
-
-function xx-fix-icon-url () {
-    sed -si "s/<em:iconURL>.*<\/em:iconURL>/<em:iconURL>chrome:\/\/zotero-openoffice-integration\/content\/zotero.png<\/em:iconURL>/" install.rdf
-}
-
-function xx-fix-target-id () {
-    sed -si "s/zotero@chnm.gmu.edu/juris-m@juris-m.github.io/g" install.rdf
 }
 
 function xx-add-install-check-module () {
@@ -111,15 +100,13 @@ function build-the-plugin () {
         xx-make-build-directory
         cd build
         xx-retrieve-compiled-plugin
+        xx-grab-install-rdf
         set-install-version
         xx-install-icon
         xx-fix-product-ids
         xx-fix-product-name
         xx-fix-contributor
         xx-install-icon
-        xx-fix-homepage-url
-        xx-fix-icon-url
-        xx-fix-target-id
         xx-add-install-check-module
         xx-fix-uuids
         xx-fix-install
