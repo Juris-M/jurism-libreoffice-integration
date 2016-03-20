@@ -21,16 +21,16 @@ function xx-make-build-directory () {
     mkdir build
 }
 
-function xx-grab-install-rdf () {
-    cp ../install.rdf .
-}
-
 function xx-retrieve-compiled-plugin () {
     trap booboo ERR
     wget -O compiled-plugin.xpi "${COMPILED_PLUGIN_URL}" >> "${LOG_FILE}" 2<&1
     trap - ERR
     unzip compiled-plugin.xpi >> "${LOG_FILE}" 2<&1
     rm -f compiled-plugin.xpi
+}
+
+function xx-grab-install-rdf () {
+    cp ../install.rdf .
 }
 
 function xx-fix-product-ids () {
