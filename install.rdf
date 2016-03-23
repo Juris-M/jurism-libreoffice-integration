@@ -5,8 +5,8 @@
     <em:name>Juris-M LibreOffice Integration</em:name>
     <em:version>3.5.10m10</em:version>
     <em:creator>Frank Bennett</em:creator>
-    <em:contributor>Center for History and New Media<br/>George Mason University</em:contributor>
     <em:developer>Simon Kornblith</em:developer>
+    <em:contributor>Center for History and New Media<br/>George Mason University</em:contributor>
     <em:homepageURL>https://juris-m.github.io/downloads</em:homepageURL>
     <em:updateURL>https://juris-m.github.io/jurism-libreoffice-integration/update.rdf</em:updateURL>
     <em:iconURL>chrome://zotero-openoffice-integration/content/zotero.png</em:iconURL>
@@ -24,8 +24,8 @@
     </em:targetApplication>
     <em:targetApplication>
       <Description>
-        <em:id>zotero@chnm.gmu.edu</em:id>
-        <em:minVersion>4.0</em:minVersion>
+        <em:id>juris-m@juris-m.github.io</em:id>
+        <em:minVersion>2.1a1</em:minVersion>
         <em:maxVersion>4.0.*</em:maxVersion>
       </Description>
     </em:targetApplication>
