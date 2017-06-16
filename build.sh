@@ -14,6 +14,14 @@ VERSION_ROOT="3.5.12m"
 COMPILED_PLUGIN_URL="https://download.zotero.org/integration/Zotero-LibreOffice-Plugin-3.5.12.xpi"
 SIGNED_STUB="juris_m_libreoffice_integration-"
 
+gsed --version > /dev/null 2<&1
+if [ $? -gt 0 ]; then
+    GSED="sed"
+else
+    GSED="gsed"
+fi
+
+
 function xx-make-build-directory () {
     if [ -d "build" ]; then
         rm -fR build
@@ -36,21 +44,21 @@ function xx-grab-install-rdf () {
 
 function xx-fix-product-ids () {
     # LO
-    gsed -si "s/zoteroOpenOfficeIntegration@zotero.org/jurismOpenOfficeIntegration@juris-m.github.io/g" resource/installer.jsm
+    $GSED -si "s/zoteroOpenOfficeIntegration@zotero.org/jurismOpenOfficeIntegration@juris-m.github.io/g" resource/installer.jsm
     # Mac
-    gsed -si "s/zoteroMacWordIntegration@zotero.org/jurismMacWordIntegration@juris-m.github.io/g" resource/installer.jsm
+    $GSED -si "s/zoteroMacWordIntegration@zotero.org/jurismMacWordIntegration@juris-m.github.io/g" resource/installer.jsm
     # Win
-    gsed -si "s/zoteroWinWordIntegration@zotero.org/jurismWinWordIntegration@juris-m.github.io/g" resource/installer.jsm
+    $GSED -si "s/zoteroWinWordIntegration@zotero.org/jurismWinWordIntegration@juris-m.github.io/g" resource/installer.jsm
 }
 
 function xx-fix-product-name () {
-    gsed -si "/Copyright.*Zotero/n;/Zotero *=/n;s/Zotero\( \|\"\|$\)/Juris-M\\1/g" install.rdf
-    gsed -si "/Copyright.*Zotero/n;/Zotero *=/n;s/Zotero\( \|\"\|$\)/Juris-M\\1/g" components/zoteroOpenOfficeIntegration.js
-    gsed -si "/Copyright.*Zotero/n;/Zotero *=/n;s/Zotero\( \|\"\|$\)/Juris-M\\1/g" resource/installer.jsm
+    $GSED -si "/Copyright.*Zotero/n;/Zotero *=/n;s/Zotero\( \|\"\|$\)/Juris-M\\1/g" install.rdf
+    $GSED -si "/Copyright.*Zotero/n;/Zotero *=/n;s/Zotero\( \|\"\|$\)/Juris-M\\1/g" components/zoteroOpenOfficeIntegration.js
+    $GSED -si "/Copyright.*Zotero/n;/Zotero *=/n;s/Zotero\( \|\"\|$\)/Juris-M\\1/g" resource/installer.jsm
 }
 
 function xx-fix-contributor () {
-    gsed -si "/<\/em:developer>/a\    <em:contributor>Frank Bennett</em:contributor>" install.rdf
+    $GSED -si "/<\/em:developer>/a\    <em:contributor>Frank Bennett</em:contributor>" install.rdf
 }
 
 function xx-install-icon () {
@@ -63,30 +71,30 @@ function xx-add-install-check-module () {
 }
 
 function xx-fix-uuids () {
-    gsed -si "s/f43193a1-7060-41a3-8e82-481d58b71e6f/62645C66-2DD5-11E5-B434-93CF1D5D46B0/g" chrome.manifest
-    gsed -si "s/f43193a1-7060-41a3-8e82-481d58b71e6f/62645C66-2DD5-11E5-B434-93CF1D5D46B0/g" components/zoteroOpenOfficeIntegration.js
-    gsed -si "s/8478cd98-5ba0-4848-925a-75adffff2dbf/2AD30C00-2DDC-11E5-98C6-7BD91D5D46B0/g" chrome.manifest
-    gsed -si "s/8478cd98-5ba0-4848-925a-75adffff2dbf/2AD30C00-2DDC-11E5-98C6-7BD91D5D46B0/g" components/zoteroOpenOfficeIntegration.js
-    gsed -si "s/82483c48-304c-460e-ab31-fac872f20379/44AF3E96-2DDC-11E5-952E-8DD91D5D46B0/g" chrome.manifest
-    gsed -si "s/82483c48-304c-460e-ab31-fac872f20379/44AF3E96-2DDC-11E5-952E-8DD91D5D46B0/g" components/zoteroOpenOfficeIntegration.js
+    $GSED -si "s/f43193a1-7060-41a3-8e82-481d58b71e6f/62645C66-2DD5-11E5-B434-93CF1D5D46B0/g" chrome.manifest
+    $GSED -si "s/f43193a1-7060-41a3-8e82-481d58b71e6f/62645C66-2DD5-11E5-B434-93CF1D5D46B0/g" components/zoteroOpenOfficeIntegration.js
+    $GSED -si "s/8478cd98-5ba0-4848-925a-75adffff2dbf/2AD30C00-2DDC-11E5-98C6-7BD91D5D46B0/g" chrome.manifest
+    $GSED -si "s/8478cd98-5ba0-4848-925a-75adffff2dbf/2AD30C00-2DDC-11E5-98C6-7BD91D5D46B0/g" components/zoteroOpenOfficeIntegration.js
+    $GSED -si "s/82483c48-304c-460e-ab31-fac872f20379/44AF3E96-2DDC-11E5-952E-8DD91D5D46B0/g" chrome.manifest
+    $GSED -si "s/82483c48-304c-460e-ab31-fac872f20379/44AF3E96-2DDC-11E5-952E-8DD91D5D46B0/g" components/zoteroOpenOfficeIntegration.js
 }
 
 function xx-fix-install () {
     # ID everywhere
-    gsed -si "s/zotero@chnm.gmu.edu/juris-m@juris-m.github.io/g" resource/installer.jsm
-    gsed -si "s/zotero@chnm.gmu.edu/juris-m@juris-m.github.io/g" resource/installer_common.jsm
+    $GSED -si "s/zotero@chnm.gmu.edu/juris-m@juris-m.github.io/g" resource/installer.jsm
+    $GSED -si "s/zotero@chnm.gmu.edu/juris-m@juris-m.github.io/g" resource/installer_common.jsm
     # URLs
-    gsed -si "s/\(url: *\"\)\([^\"]*\)/\\1juris-m.github.io\/downloads/g" resource/installer.jsm
+    $GSED -si "s/\(url: *\"\)\([^\"]*\)/\\1juris-m.github.io\/downloads/g" resource/installer.jsm
 }
 
 # Are we clever enough now not to need this?
 function xx-insert-copyright-blocks () {
-    gsed -si "/BEGIN LICENSE/r ../additives/copyright_block.txt" resource/installer.jsm
-    gsed -si "/END OF INSERT/,/END LICENSE/d" resource/installer.jsm
-    gsed -si "/BEGIN LICENSE/r ../additives/copyright_block.txt" resource/installer_common.jsm
-    gsed -si "/END OF INSERT/,/END LICENSE/d" resource/installer_common.jsm
-    gsed -si "/BEGIN LICENSE/r ../additives/copyright_block.txt" components/zoteroOpenOfficeIntegration.js
-    gsed -si "/END OF INSERT/,/END LICENSE/d" components/zoteroOpenOfficeIntegration.js
+    $GSED -si "/BEGIN LICENSE/r ../additives/copyright_block.txt" resource/installer.jsm
+    $GSED -si "/END OF INSERT/,/END LICENSE/d" resource/installer.jsm
+    $GSED -si "/BEGIN LICENSE/r ../additives/copyright_block.txt" resource/installer_common.jsm
+    $GSED -si "/END OF INSERT/,/END LICENSE/d" resource/installer_common.jsm
+    $GSED -si "/BEGIN LICENSE/r ../additives/copyright_block.txt" components/zoteroOpenOfficeIntegration.js
+    $GSED -si "/END OF INSERT/,/END LICENSE/d" components/zoteroOpenOfficeIntegration.js
 }
 
 function xx-apply-patch () {
