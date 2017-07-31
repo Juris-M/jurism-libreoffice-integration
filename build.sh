@@ -14,13 +14,14 @@ VERSION_ROOT="3.5.12m"
 COMPILED_PLUGIN_URL="https://download.zotero.org/integration/Zotero-LibreOffice-Plugin-3.5.12.xpi"
 SIGNED_STUB="juris_m_libreoffice_integration-"
 
+set +e
 gsed --version > /dev/null 2<&1
 if [ $? -gt 0 ]; then
     GSED="sed"
 else
     GSED="gsed"
 fi
-
+set -e
 
 function xx-make-build-directory () {
     if [ -d "build" ]; then
